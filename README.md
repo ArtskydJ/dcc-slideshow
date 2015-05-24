@@ -10,20 +10,26 @@ This needs a better name. If you have an idea, [post it here](https://github.com
 
 # program spec
 
-A program is a list of songs and blank slides. A program is stored in a text file like:
+A program is a list of songs, pictures, and blank slides.
+
+- a picture (e.g. `welcome.png`)
+- a song file (e.g. `amazing-grace.txt`)
+- a blank slide (blank line).
+
+A program is stored in a text file like:
 
 ```
 welcome.png
 
 intro-2015-05-23.txt
 
-whatever-song.txt
+amazing-grace.txt
 another-song.txt
 
 last-song.txt
 ```
 
-Each line in the program text file is either a picture (e.g. `welcome.png`) or a song file (e.g. `song.txt`).
+
 
 # slide spec
 
