@@ -5,8 +5,14 @@ This needs a better name. If you have an idea, [post it here](https://github.com
 
 # goals
 
-- Extremely easy to create/modify songs and programs.
-- No messing with styles except with a `styles.css` file.
+- Extremely easy to create/modify songs and programs. No more copy and pasting slides together.
+- No more mis-matched styles; just a global `styles.css` file.
+- No bloated software (e.g. powerpoint, libre office)
+- Better keyboard shortcuts:
+	- Previous slide: <kbd>Page Up</kbd>, <kbd>Left</kbd>, <kbd>Up</kbd>, <kbd>J</kbd>, <kbd>O</kbd>, <kbd>Backspace</kbd>
+	- Next Slide: <kbd>Page Down</kbd>, <kbd>Right</kbd>, <kbd>Down</kbd>, <kbd>K</kbd>, <kbd>P</kbd>, <kbd>Space</kbd>
+	- First Slide: <kbd>Home</kbd>
+	- Last Slide: <kbd>End</kbd>
 
 # program spec
 
