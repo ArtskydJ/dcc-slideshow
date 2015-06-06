@@ -5,7 +5,7 @@ This needs a better name. If you have an idea, [post it here](https://github.com
 
 # goals
 
-- Extremely easy to create/modify songs and programs. No more copy and pasting slides together.
+- Extremely easy to create/modify songs and projects. No more copy and pasting slides together.
 - No more mis-matched styles; just a global `styles.css` file.
 - No bloated software (e.g. powerpoint, libre office)
 - Better keyboard shortcuts:
@@ -14,15 +14,15 @@ This needs a better name. If you have an idea, [post it here](https://github.com
 	- First Slide: <kbd>Home</kbd>
 	- Last Slide: <kbd>End</kbd>
 
-# program spec
+# project spec
 
-A program is a list of songs, pictures, and blank slides.
+A project is a list of songs, pictures, and blank slides.
 
 - a picture (e.g. `welcome.png`)
 - a song file (e.g. `amazing-grace.txt`)
 - a blank slide (blank line).
 
-A program is stored in a text file like:
+A project is stored in a text file like:
 
 ```
 welcome.png
