@@ -5,18 +5,24 @@ This needs a better name. If you have an idea, [post it here](https://github.com
 
 # goals
 
-- Extremely easy to create/modify songs and programs.
-- No messing with styles except with a `styles.css` file.
+- Extremely easy to create/modify songs and projects. No more copy and pasting slides together.
+- No more mis-matched styles; just a global `styles.css` file.
+- No bloated software (e.g. powerpoint, libre office)
+- Better keyboard shortcuts:
+	- Previous slide: <kbd>Page Up</kbd>, <kbd>Left</kbd>, <kbd>Up</kbd>, <kbd>J</kbd>, <kbd>O</kbd>, <kbd>Backspace</kbd>
+	- Next Slide: <kbd>Page Down</kbd>, <kbd>Right</kbd>, <kbd>Down</kbd>, <kbd>K</kbd>, <kbd>P</kbd>, <kbd>Space</kbd>
+	- First Slide: <kbd>Home</kbd>
+	- Last Slide: <kbd>End</kbd>
 
-# program spec
+# project spec
 
-A program is a list of songs, pictures, and blank slides.
+A project is a list of songs, pictures, and blank slides.
 
 - a picture (e.g. `welcome.png`)
 - a song file (e.g. `amazing-grace.txt`)
 - a blank slide (blank line).
 
-A program is stored in a text file like:
+A project is stored in a text file like:
 
 ```
 welcome.png
