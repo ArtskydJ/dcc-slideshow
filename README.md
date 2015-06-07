@@ -49,8 +49,8 @@ A song is a text file. It holds headers, footers, lyrics, and slide breaks.
 
 - Slide Breaks
 	- A slide break is a line with three or more hyphens (`-`).
-	- A slide break at the beginning of a song file without content before it will be ignored. It will *not* be interpreted as an empty slide.
-	- A slide break at the end of a song file without content after it will be ignored. It will *not* be interpreted as an empty slide.
+	- A slide break at the beginning of a song file (without content before it) will be ignored. It will *not* be interpreted as an empty slide.
+	- A slide break at the end of a song file (without content after it) will be ignored. It will *not* be interpreted as an empty slide.
 	- Consecutive slide breaks *are* interpreted as empty slides.
 	- Newlines surrounding slide breaks are ignored.
 - Headers
