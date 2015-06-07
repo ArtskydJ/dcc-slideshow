@@ -1,0 +1,6 @@
+{
+	"prev": [ "pageup", "backspace", "left", "up", "j", "o" ],
+	"next": [ "pagedown", "space", "right", "down", "k", "p" ],
+	"first": [ "home" ],
+	"last": [ "end" ]
+}

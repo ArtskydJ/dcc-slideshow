@@ -1,0 +1,31 @@
+{
+  "name": "slideshow",
+  "version": "0.0.1",
+  "main": "./index.js",
+  "private": true,
+  "author": {
+    "name": "ArtskydJ",
+    "email": "josephdykstra@gmail.com"
+  },
+  "description": "",
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ArtskydJ/"
+  },
+  "scripts": {
+    "build": "browserify js/index.js -o public/bundle.js",
+    "watch": "watchify js/index.js -d -o public/bundle.js"
+  },
+  "dependencies": {
+    "dom-event": "0.0.5",
+    "fullscreen": "^1.0.0",
+    "hash-change": "^0.1.0",
+    "key-event": "0.0.0",
+    "onetime": "^1.0.0"
+  },
+  "devDependencies": {
+    "browserify": "^10.2.3",
+    "watchify": "^3.2.1"
+  }
+}
