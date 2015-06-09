@@ -1,4 +1,4 @@
-~Amazing Grace~
+# Amazing Grace
 
 Amazing Grace, how sweet the sound,
 That saved a wretch like me....
@@ -31,4 +31,4 @@ That saved a wretch like me....
 I once was lost but now am found,
 Was blind, but now, I see.
 
-[Public Domain maybe]
+> Public Domain maybe
