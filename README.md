@@ -53,18 +53,21 @@ A song is a text file. It holds headers, footers, lyrics, and slide breaks.
 	- A slide break at the end of a song file (without content after it) will be ignored. It will *not* be interpreted as an empty slide.
 	- Consecutive slide breaks *are* interpreted as empty slides.
 	- Newlines surrounding slide breaks are ignored.
+	- Can be matched with this regex: `/^-{3,}$/gm`
 - Headers
-	- A header must be delimited by tildes (`~`).
+	- A header must begin with a pound sign followed by a space (`# Title of Song`).
 	- A slide in which a header is defined will use that header.
 	- Subsequent slides within that song file will inherit the header, unless a later header overrides it.
+	- Can be matched with this regex: `/^# .+/gm`
 - Footers
-	- A footer must be delimited by square brackets (`[`, `]`).
+	- A footer must begin with a greater-than sign followed by a space (`> License or whatever`).
 	- A slide in which a footer is defined will use that footer.
 	- Subsequent slides will not inherit the footer.
+	- Can be matched with this regex: `/^> .+/gm`
 - Lyrics are anything that is not a header, footer, or a slide break. Surrounding newlines are ignored, but internal whitespace is preserved.
 
-```
-~Amazing Grace~
+```md
+# Amazing Grace
 
 Amazing Grace, how sweet the sound,
  that saved a wretch like me!
@@ -96,7 +99,7 @@ Amazing Grace, how sweet the sound,
 I once was lost but now am found,
  was blind, but now, I see.
 
-[Public Domain maybe]
+> Public Domain maybe
 ```
 
 # license
