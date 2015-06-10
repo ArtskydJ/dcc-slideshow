@@ -19,9 +19,11 @@
   },
   "dependencies": {
     "array.prototype.find": "^1.0.0",
+    "async-each": "^0.1.6",
     "dom-event": "0.0.5",
     "fullscreen": "^1.0.0",
     "hash-change": "^0.1.0",
+    "hyperquestionable": "^3.0.1",
     "key-event": "0.0.0",
     "onetime": "^1.0.0"
   },

@@ -8,8 +8,9 @@ var SLIDE_BREAK_RE = /\s*^-{3,}$\s*/gm
 module.exports = function parse(markdown) {
 	return markdown
 		.split(SLIDE_BREAK_RE)
-		//.filter(Boolean) // Remove empty slides
+		.filter(Boolean) // Remove empty slides
 		.map(parseSlide)
+		.filter(Boolean) // Remove empty slides
 		.map(inheritHeaders)
 		.map(toHtml)
 }
