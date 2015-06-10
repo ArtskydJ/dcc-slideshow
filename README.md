@@ -55,11 +55,13 @@ A song is a text file. It holds headers, footers, lyrics, and slide breaks.
 	- Newlines surrounding slide breaks are ignored.
 	- Can be matched with this regex: `/^-{3,}$/gm`
 - Headers
+	- A header must not be defined below lyrics in the same slide. (Usually defined at the top of a file, or just below a slide break.)
 	- A header must begin with a pound sign followed by a space (`# Title of Song`).
 	- A slide in which a header is defined will use that header.
 	- Subsequent slides within that song file will inherit the header, unless a later header overrides it.
 	- Can be matched with this regex: `/^# .+/gm`
 - Footers
+	- A footer must not be defined above lyrics in the same slide. (Usually defined at the bottom of a file, or just above a slide break.)
 	- A footer must begin with a greater-than sign followed by a space (`> License or whatever`).
 	- A slide in which a footer is defined will use that footer.
 	- Subsequent slides will not inherit the footer.
