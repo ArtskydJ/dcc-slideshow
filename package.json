@@ -18,6 +18,7 @@
     "watch": "watchify js/index.js -d -o public/bundle.js"
   },
   "dependencies": {
+    "array.prototype.find": "^1.0.0",
     "dom-event": "0.0.5",
     "fullscreen": "^1.0.0",
     "hash-change": "^0.1.0",
