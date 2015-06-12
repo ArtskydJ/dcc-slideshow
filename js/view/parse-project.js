@@ -10,20 +10,21 @@ module.exports = function parseProject(projectUrlBase, songUrlBase) {
 			} else {
 				console.log(list)
 				var listArray = list.split(/\r?\n/g)
-				var fileNames = listArray.filter(Boolean)
-				each(fileNames, function iterate(fileName, next) {
-					get(songUrlBase, fileName, next)
+				each(listArray, function iterate(fileName, next) {
+					if (fileName) {
+						get(songUrlBase, fileName, next)
+					} else {
+						next(null, '')
+					}
 				}, function all(err, songsData) {
 					if (err) {
 						cb(err)
 					} else {
-						songsData.forEach(function (song) {console.log(typeof song, song)})
 						var htmlSongs = songsData.map(parseSong)
-						var songIndex = 0
-						var htmlProject = listArray.map(function (fileName) {
-							return fileName && htmlSongs[songIndex++]
-						})
-						var flatHtmlProject = [].concat.apply([], htmlProject)
+						window.first = parseImage(songsData[0], 'x.png')
+						console.dir(songsData)
+						console.dir(htmlSongs)
+						var flatHtmlProject = [].concat.apply([], htmlSongs)
 						cb(null, flatHtmlProject)
 					}
 				})
