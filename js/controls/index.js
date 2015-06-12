@@ -22,9 +22,10 @@ module.exports = function slideChange(ele) {
 		window.location.hash = modify(curr, maxSlideIndex)
 	}
 
+	/* Annoying in dev
 	domEvent(ele, 'click', function (ev) {
 		modifyIndex('next')
-	})
+	})*/
 
 	Object.keys(keymap).forEach(function (action) {
 		keymap[action].forEach(function (key) {
