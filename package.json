@@ -22,10 +22,11 @@
     "async-each": "^0.1.6",
     "concat-stream": "^1.4.10",
     "dom-event": "0.0.5",
+    "file-type": "^2.7.0",
     "fullscreen": "^1.0.0",
     "hash-change": "^0.1.0",
     "hyperquest": "^1.2.0",
-    "image-extensions": "^1.1.0",
+    "is-image": "^1.0.1",
     "key-event": "0.0.0",
     "onetime": "^1.0.0",
     "through2-map": "^1.4.0"
