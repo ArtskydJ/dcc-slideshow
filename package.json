@@ -25,9 +25,10 @@
     "fullscreen": "^1.0.0",
     "hash-change": "^0.1.0",
     "hyperquest": "^1.2.0",
+    "image-extensions": "^1.1.0",
     "key-event": "0.0.0",
     "onetime": "^1.0.0",
-    "text-extensions": "^1.3.2"
+    "through2-map": "^1.4.0"
   },
   "devDependencies": {
     "browserify": "^10.2.3",

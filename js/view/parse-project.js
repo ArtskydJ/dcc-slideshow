@@ -8,7 +8,7 @@ module.exports = function parseProject(projectUrlBase, songUrlBase) {
 			if (err) {
 				cb(err)
 			} else {
-				console.log(list)
+				console.log(typeof list, list)
 				var listArray = list.split(/\r?\n/g)
 				each(listArray, function iterate(fileName, next) {
 					if (fileName) {
@@ -21,7 +21,6 @@ module.exports = function parseProject(projectUrlBase, songUrlBase) {
 						cb(err)
 					} else {
 						var htmlSongs = songsData.map(parseSong)
-						window.first = parseImage(songsData[0], 'x.png')
 						console.dir(songsData)
 						console.dir(htmlSongs)
 						var flatHtmlProject = [].concat.apply([], htmlSongs)
