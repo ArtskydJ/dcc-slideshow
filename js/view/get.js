@@ -3,7 +3,7 @@ var concat = require('concat-stream')
 var dataUri = require('datauri-stream')
 var onetime = require('onetime')
 var isImage = require('is-image')
-var getMime = require('simple-mime')('application/octect-stream')
+var getMime = require('simple-mime')('application/octet-stream')
 
 module.exports = function get(url, callback) {
 	var cb = onetime(callback)
