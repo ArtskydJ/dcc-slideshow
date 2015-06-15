@@ -1,24 +1,24 @@
 var hyperquest = require('hyperquest')
-var concatStream = require('concat-stream')
-var url = require('url')
+var concat = require('concat-stream')
+var dataUri = require('datauri-stream')
 var onetime = require('onetime')
-var DataUriStream = require('./data-uri-stream.js')
 var isImage = require('is-image')
+var getMime = require('simple-mime')('application/octect-stream')
 
-module.exports = function get(urlBase, urlFile, callback) {
+module.exports = function get(url, callback) {
 	var cb = onetime(callback)
-	var resolved = url.resolve(urlBase, urlFile)
-	hyperquest(resolved, function(err, res) {
+	hyperquest(url, function(err, res) {
 		if (err) {
 			cb(err)
 		} else {
-			var concat = concatStream({ encoding: 'string' }, function (data) {
+			var concatStr = concat({ encoding: 'string' }, function (data) {
 				cb(null, data)
 			})
-			if (isImage(urlFile)) {
-				res.pipe(DataUriStream()).pipe(concat)
+			if (isImage(url)) {
+				var opts = { mime: getMime(url) }
+				res.pipe(dataUri(opts)).pipe(concatStr)
 			} else {
-				res.pipe(concat)
+				res.pipe(concatStr)
 			}
 			res.on('error', cb)
 		}
