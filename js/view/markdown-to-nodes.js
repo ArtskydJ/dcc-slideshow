@@ -11,9 +11,8 @@ module.exports = function parse(markdown) {
 		.map(parseSlide)
 		.filter(Boolean) // Remove empty slides
 		.map(inheritHeaders)
-		.map(toHtml)
+		.map(toNode)
 }
-
 
 function parseSlide(slide) {
 	var x = SLIDE_PIECES_RE.exec(slide)
@@ -24,12 +23,14 @@ function parseSlide(slide) {
 	}
 }
 
-function toHtml(slide) {
-	return (
+function toNode(slide) {
+	var div = document.createElement('div')
+	div.innerHTML = (
 		'<div class="header">' + slide.header + '</div>' +
 		'<div class="lyrics">\n' +
 		'\t' + slide.lyrics.replace(/\r?\n/g, '<br>\t') +
 		'\n</div>\n' +
 		'<div class="footer">' + slide.footer + '</div>'
 	)
+	return div
 }

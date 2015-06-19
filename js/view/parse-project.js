@@ -1,7 +1,7 @@
-var markdownToHtmlArray = require('./markdown-to-html-array.js')
+var markdownToNodes = require('./markdown-to-nodes.js')
 var asyncEach = require('async-each')
 var getText = require('./get-text.js')
-var getImageHtml = require('./get-image-html.js')
+var getImageNode = require('./get-image-node.js')
 var url = require('url')
 var isImage = require('is-image')
 
@@ -10,13 +10,13 @@ module.exports = function parseProject(projectUrlBase, songUrlBase) {
 	function eachFile(fileName, next) {
 		var songUrl = url.resolve(songUrlBase, fileName)
 		if (isImage(fileName)) {
-			getImageHtml(songUrl, next)
+			next(null, getImageNode(songUrl))
 		} else if (fileName) {
 			getText(songUrl, function (err, mkdn) {
-				next(err, markdownToHtmlArray(mkdn))
+				next(err, !err && markdownToNodes(mkdn))
 			})
 		} else {
-			next(null, '')
+			next(null, document.createElement('div'))
 		}
 	}
 
@@ -26,7 +26,6 @@ module.exports = function parseProject(projectUrlBase, songUrlBase) {
 			if (err) {
 				cb(err)
 			} else {
-				console.log(typeof list, list)
 				var listArray = list.split(/\r?\n/g)
 				asyncEach(listArray, eachFile, function all(err, htmlChunkTree) {
 					if (err) {
