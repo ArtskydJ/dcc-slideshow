@@ -41,7 +41,7 @@ last-song.txt
 
 ## picture
 
-A slide can be a picture file. The picture is stretched to fit. It is a 1:1 stretch, so the picture is not skewed.
+A slide can be a picture file. The picture centered horizontally and vertically, and is not stretched.
 
 ## song
 
