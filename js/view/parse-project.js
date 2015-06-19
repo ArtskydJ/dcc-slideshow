@@ -1,35 +1,39 @@
-var parseSong = require('./parse-song.js')
-var each = require('async-each')
-var get = require('./get.js')
+var markdownToHtmlArray = require('./markdown-to-html-array.js')
+var asyncEach = require('async-each')
+var getText = require('./get-text.js')
+var getImageHtml = require('./get-image-html.js')
 var url = require('url')
+var isImage = require('is-image')
 
 module.exports = function parseProject(projectUrlBase, songUrlBase) {
+
+	function eachFile(fileName, next) {
+		var songUrl = url.resolve(songUrlBase, fileName)
+		if (isImage(fileName)) {
+			getImageHtml(songUrl, next)
+		} else if (fileName) {
+			getText(songUrl, function (err, mkdn) {
+				next(err, markdownToHtmlArray(mkdn))
+			})
+		} else {
+			next(null, '')
+		}
+	}
+
 	return function pp(projectFile, cb) {
 		var projectUrl = url.resolve(projectUrlBase, projectFile)
-		get(projectUrl, function g(err, list) {
+		getText(projectUrl, function g(err, list) {
 			if (err) {
 				cb(err)
 			} else {
 				console.log(typeof list, list)
 				var listArray = list.split(/\r?\n/g)
-				each(listArray, function iterate(fileName, next) {
-					var songUrl = url.resolve(songUrlBase, fileName)
-					if (fileName) {
-						get(songUrl, function (err, data) {
-							console.log(songUrl, err, data)
-							next(err, data)
-						})
-					} else {
-						next(null, '')
-					}
-				}, function all(err, songsData) {
+				asyncEach(listArray, eachFile, function all(err, htmlChunkTree) {
 					if (err) {
 						cb(err)
 					} else {
-						var htmlSongs = songsData.map(parseSong)
-						console.dir(songsData)
-						console.dir(htmlSongs)
-						var flatHtmlProject = [].concat.apply([], htmlSongs)
+						console.dir(htmlChunkTree)
+						var flatHtmlProject = [].concat.apply([], htmlChunkTree)
 						cb(null, flatHtmlProject)
 					}
 				})

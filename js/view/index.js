@@ -8,9 +8,11 @@ module.exports = function domSlide(element) {
 		if (err) {
 			console.error(err)
 		} else {
-			hashChange.on('change', function (hash) {
+			function loadSlide(hash) {
 				element.innerHTML = htmlSlides[hash]
-			})
+			}
+			hashChange.on('change', loadSlide)
+			loadSlide(0)
 		}
 	})
 }
