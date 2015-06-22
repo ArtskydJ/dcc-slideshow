@@ -11,9 +11,8 @@ var modifiers = {
 	last: function last(x, max) { return max }
 }
 
-module.exports = function slideChange(ele) {
+module.exports = function slideChange(ele, maxSlideIndex) {
 	if (!ele) throw new Error('Must provide an element to slide-change.js')
-	var maxSlideIndex = 99
 
 	function modifyIndex(action) {
 		// tryFull() // Annoying in dev...

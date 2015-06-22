@@ -1,5 +1,6 @@
 require('array.prototype.find')
 var inheritHeaders = require('./inherit-headers.js')
+var elementClass = require('element-class')
 
 var SLIDE_BREAK_RE = /\s*^-{3,}$\s*/gm
 var SLIDE_PIECES_RE = /^(?:# (.+))?(?:\r?\n)*([^>]+)(?:> (.+))?(\r?\n)*$/
@@ -25,6 +26,7 @@ function parseSlide(slide) {
 
 function toNode(slide) {
 	var div = document.createElement('div')
+	elementClass(div).add('slide-container')
 	div.innerHTML = (
 		'<div class="header">' + slide.header + '</div>' +
 		'<div class="lyrics">\n' +

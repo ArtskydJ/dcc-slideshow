@@ -1,5 +1,7 @@
 var controls = require('./controls/index.js')
 var view = require('./view/index.js')
 
-controls(document.body)
-view(document.body)
+view(document.body, function (max) {
+	console.log(max)
+	controls(document.body, max)
+})

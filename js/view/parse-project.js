@@ -27,13 +27,12 @@ module.exports = function parseProject(projectUrlBase, songUrlBase) {
 				cb(err)
 			} else {
 				var listArray = list.split(/\r?\n/g)
-				asyncEach(listArray, eachFile, function all(err, htmlChunkTree) {
+				asyncEach(listArray, eachFile, function all(err, nodeTree) {
 					if (err) {
 						cb(err)
 					} else {
-						console.dir(htmlChunkTree)
-						var flatHtmlProject = [].concat.apply([], htmlChunkTree)
-						cb(null, flatHtmlProject)
+						var nodeArray = [].concat.apply([], nodeTree)
+						cb(null, nodeArray)
 					}
 				})
 			}

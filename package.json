@@ -24,6 +24,7 @@
     "data-uri-stream": "^1.0.0",
     "datauri-stream": "^1.0.1",
     "dom-event": "0.0.5",
+    "element-class": "^0.2.0",
     "fullscreen": "^1.0.0",
     "hash-change": "^0.1.0",
     "hyperquest": "^1.2.0",
