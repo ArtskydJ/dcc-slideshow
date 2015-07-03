@@ -1,31 +1,41 @@
-var hashChange = require('hash-change')
-var elementClass = require('element-class')
-var ParseProject = require('./parse-project.js')
+var markdownToNodes = require('./markdown-to-nodes.js')
+var asyncEach = require('async-each')
+var getText = require('hyperquestionable')
+var getImageNode = require('./get-image-node.js')
+var url = require('url')
+var isImage = require('is-image')
 
-var parse = ParseProject('http://localhost/test-projects/', 'http://localhost/test-songs/')
+module.exports = function parseProject(projectUrlBase, songUrlBase) {
 
-module.exports = function domSlide(element, cb) {
-	parse('project.txt', function (err, nodes) {
-		if (err) {
-			console.error(err)
-		} else {
-			nodes.forEach(function (node, i) {
-				node.id = i
-				elementClass(node).add('hide')
-				element.appendChild(node)
+	function eachFile(fileName, next) {
+		var songUrl = url.resolve(songUrlBase, fileName)
+		if (isImage(fileName)) {
+			next(null, getImageNode(songUrl))
+		} else if (fileName) {
+			getText(songUrl, function (err, r, mkdn) {
+				next(err, !err && markdownToNodes(mkdn))
 			})
-
-			function loadSlide(hash) {
-				var showing = element.querySelector('.show')
-				elementClass(showing).remove('show')
-
-				var toShow = document.getElementById(hash)
-				elementClass(toShow).add('show')
-			}
-			hashChange.on('change', loadSlide)
-			loadSlide(0)
-
-			cb(nodes.length - 1)
+		} else {
+			next(null, document.createElement('div'))
 		}
-	})
+	}
+
+	return function pp(projectFile, cb) {
+		var projectUrl = url.resolve(projectUrlBase, projectFile)
+		getText(projectUrl, function g(err, r, list) {
+			if (err) {
+				cb(err)
+			} else {
+				var listArray = list.split(/\r?\n/g)
+				asyncEach(listArray, eachFile, function all(err, nodeTree) {
+					if (err) {
+						cb(err)
+					} else {
+						var nodeArray = [].concat.apply([], nodeTree)
+						cb(null, nodeArray)
+					}
+				})
+			}
+		})
+	}
 }

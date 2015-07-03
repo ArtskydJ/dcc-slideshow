@@ -4,8 +4,8 @@
   "main": "./index.js",
   "private": true,
   "author": {
-    "name": "ArtskydJ",
-    "email": "josephdykstra@gmail.com"
+    "email": "josephdykstra@gmail.com",
+    "name": "ArtskydJ"
   },
   "description": "",
   "keywords": [],
@@ -14,27 +14,30 @@
     "url": "https://github.com/ArtskydJ/"
   },
   "scripts": {
-    "build": "browserify js/index.js -o public/bundle.js",
-    "watch": "watchify js/index.js -d -o public/bundle.js"
+    "build": "npm run build-presentation && npm run build-preview",
+    "build-presentation": "browserify js/presentation.js | uglifyjs - -m -o public/presentation.js",
+    "build-preview": "browserify js/preview.js | uglifyjs - -m -o public/preview.js",
+    "watch-presentation": "watchify js/presentation.js -d -o public/presentation.js",
+    "watch-preview": "watchify js/preview.js -d -o public/preview.js"
   },
   "dependencies": {
     "array.prototype.find": "^1.0.0",
     "async-each": "^0.1.6",
     "concat-stream": "^1.4.10",
-    "data-uri-stream": "^1.0.0",
-    "datauri-stream": "^1.0.1",
     "dom-event": "0.0.5",
     "element-class": "^0.2.0",
     "fullscreen": "^1.0.0",
-    "hash-change": "^0.1.0",
-    "hyperquest": "^1.2.0",
+    "hyperquestionable": "^1.2.0",
+    "img": "^1.0.0",
     "is-image": "^1.0.1",
     "key-event": "0.0.0",
     "onetime": "^1.0.0",
-    "simple-mime": "^0.1.0"
+    "simple-mime": "^0.1.0",
+    "tab-emitter": "^1.0.4"
   },
   "devDependencies": {
     "browserify": "^10.2.3",
+    "uglify-js": "^2.4.23",
     "watchify": "^3.2.1"
   }
 }

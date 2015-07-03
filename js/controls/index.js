@@ -3,6 +3,8 @@ var domEvent = require('dom-event')
 var keyEvent = require('key-event')
 var keymap = require('./keymap.json')
 
+var PROD = false
+
 var tryFull = fullscreenOnce(document.body)
 var modifiers = {
 	prev: function prev(x, max) { return Math.max(0, x - 1) },
@@ -11,20 +13,12 @@ var modifiers = {
 	last: function last(x, max) { return max }
 }
 
-module.exports = function slideChange(ele, maxSlideIndex) {
+module.exports = function slideChange(ele, emitter, maxSlideIndex) {
 	if (!ele) throw new Error('Must provide an element to slide-change.js')
 
-	function modifyIndex(action) {
-		// tryFull() // Annoying in dev...
-		var curr = Number(window.location.hash.slice(1))
-		var modify = modifiers[action]
-		window.location.hash = modify(curr, maxSlideIndex)
-	}
-
-	/* Annoying in dev
-	domEvent(ele, 'click', function (ev) {
+	if (PROD) domEvent(ele, 'click', function (ev) {
 		modifyIndex('next')
-	})*/
+	})
 
 	Object.keys(keymap).forEach(function (action) {
 		keymap[action].forEach(function (key) {
@@ -35,4 +29,14 @@ module.exports = function slideChange(ele, maxSlideIndex) {
 	})
 
 	modifyIndex('first')
+
+	var index = 0
+	function modifyIndex(action) {
+		if (PROD) tryFull()
+		var old = index
+		index = modifiers[action](index, maxSlideIndex)
+		if (index !== old) {
+			emitter.emit('slide', index)
+		}
+	}
 }
