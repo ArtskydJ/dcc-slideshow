@@ -27,13 +27,13 @@
     "dom-event": "0.0.5",
     "element-class": "^0.2.0",
     "fullscreen": "^1.0.0",
-    "hyperquestionable": "^1.2.0",
+    "hyperquestionable": "^3.0.1",
     "img": "^1.0.0",
     "is-image": "^1.0.1",
     "key-event": "0.0.0",
     "onetime": "^1.0.0",
     "simple-mime": "^0.1.0",
-    "tab-emitter": "^1.0.4"
+    "tab-emitter": "^1.0.5"
   },
   "devDependencies": {
     "browserify": "^10.2.3",
