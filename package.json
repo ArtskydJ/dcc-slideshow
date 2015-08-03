@@ -36,7 +36,7 @@
     "tab-emitter": "^1.0.5"
   },
   "devDependencies": {
-    "browserify": "^10.2.3",
+    "browserify": "^11.0.0",
     "uglify-js": "^2.4.23",
     "watchify": "^3.2.1"
   }
