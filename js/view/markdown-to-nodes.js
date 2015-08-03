@@ -1,4 +1,3 @@
-require('array.prototype.find')
 var inheritHeaders = require('./inherit-headers.js')
 var elementClass = require('element-class')
 
