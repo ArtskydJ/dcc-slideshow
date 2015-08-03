@@ -1,3 +1,5 @@
+require('array.prototype.find')
+
 function getHeader(slide) {
 	return (slide && slide.header) || ''
 }
