@@ -104,7 +104,7 @@ Amazing Grace, how sweet the sound,
 I once was lost but now am found,
  was blind, but now, I see.
 
-> Public Domain maybe
+> Public Domain
 ```
 
 # license
