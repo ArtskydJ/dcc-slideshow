@@ -22,18 +22,18 @@
   },
   "dependencies": {
     "array.prototype.find": "^1.0.0",
-    "async-each": "^0.1.6",
     "concat-stream": "^1.4.10",
     "dom-event": "0.0.5",
     "element-class": "^0.2.0",
     "fullscreen": "^1.0.0",
-    "hyperquestionable": "^3.0.1",
     "img": "^1.0.0",
     "is-image": "^1.0.1",
     "key-event": "0.0.0",
     "onetime": "^1.0.0",
+    "run-parallel": "^1.1.2",
     "simple-mime": "^0.1.0",
-    "tab-emitter": "^1.0.5"
+    "tab-emitter": "^1.0.5",
+    "xhr": "^2.0.3"
   },
   "devDependencies": {
     "browserify": "^11.0.0",
