@@ -1,5 +1,4 @@
 var markdownToNodes = require('./markdown-to-nodes.js')
-var parallel = require('run-parallel')
 var getText = require('./get-text.js')
 var getImageNode = require('./get-image-node.js')
 var url = require('url')
@@ -8,36 +7,30 @@ var isImage = require('is-image')
 module.exports = function parseProject(projectUrlBase, songUrlBase) {
 
 	function fileToNodes(fileName) {
-		return function (next) {
-			var songUrl = url.resolve(songUrlBase, fileName)
-			if (isImage(fileName)) {
-				next(null, getImageNode(songUrl))
-			} else if (fileName) {
-				getText(songUrl, function (err, text) {
-					next(err, markdownToNodes(text))
-				})
-			} else {
-				next(null, document.createElement('div'))
-			}
+		var songUrl = url.resolve(songUrlBase, fileName)
+		if (isImage(fileName)) {
+			return getImageNode(songUrl)
+		} else if (fileName) {
+			return getText(songUrl).then(markdownToNodes)
+		} else {
+			return document.createElement('div')
 		}
 	}
 
-	return function pp(projectFile, cb) {
+	function flatten(arrayOfArrays) {
+		return [].concat.apply([], arrayOfArrays)
+	}
+
+	return function pp(projectFile) {
 		var projectUrl = url.resolve(projectUrlBase, projectFile)
-		getText(projectUrl, function g(err, list) {
-			if (err) {
-				cb(err)
-			} else {
-				var tasks = list.split(/\r?\n/g).map(fileToNodes)
-				parallel(tasks, function all(err, nodeTree) {
-					if (err) {
-						cb(err)
-					} else {
-						var nodeArray = [].concat.apply([], nodeTree)
-						cb(null, nodeArray)
-					}
-				})
-			}
-		})
+		return getText(projectUrl)
+			.then(function g(list) {
+				var proms = list.split(/\r?\n/g).map(fileToNodes)
+				return Promise.all(proms)
+			})
+			.then(flatten)
+			.catch(function (err) {
+				throw err
+			})
 	}
 }

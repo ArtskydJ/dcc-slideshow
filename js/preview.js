@@ -8,7 +8,7 @@ var reelElement = document.getElementById('reel')
 var mainElement = document.getElementById('main')
 var getSlideNodes = SlideNodes('http://localhost/test-projects/', 'http://localhost/test-songs/')
 
-getSlideNodes('project.txt', function (err, nodes) {
+getSlideNodes('project.txt').then(function (nodes) {
 	nodes.forEach(function (node, i) {
 		var clone = node.cloneNode(true)
 
@@ -31,4 +31,6 @@ getSlideNodes('project.txt', function (err, nodes) {
 
 	var max = nodes.length - 1
 	controls(rootElement, emitter, max)
+}).catch(function (err) {
+	throw err
 })

@@ -6,7 +6,7 @@ var emitter = require('tab-emitter')('slides')
 var rootElement = document.body
 var getSlideNodes = SlideNodes('http://localhost/test-projects/', 'http://localhost/test-songs/')
 
-getSlideNodes('project.txt', function (err, nodes) {
+getSlideNodes('project.txt').then(function (nodes) {
 	var max = nodes.length - 1
 	nodes.forEach(function (node, i) {
 		elementClass(node).add('hide')
@@ -20,4 +20,6 @@ getSlideNodes('project.txt', function (err, nodes) {
 	})
 
 	controls(rootElement, emitter, max)
+}).catch(function (err) {
+	throw err
 })
