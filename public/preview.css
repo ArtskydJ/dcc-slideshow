@@ -22,14 +22,14 @@ body {
 }
 
 #main {
-	height: 85vh;
+	height: 100%;
 	font-size: 18pt;
 	background-color: #444;
 }
 
 #main .image-container {
 	width: 100%;
-	height:100%;
+	height: 100%;
 	background-color: #000;
 	display: flex;
 	justify-content: center;
@@ -47,21 +47,24 @@ body {
 }
 
 #reel {
-	height: 15vh;
-	background-color: #bbb;
+	height: 17em;
+	background-color: #333;
 	display: flex;
 	font-size: 6pt;
-	overflow: hidden;
+	/*overflow-x: scroll;
+	overflow-y: hidden;*/
 }
 
 #reel > div {
-	width: 14vh;
-	height: 14vh;
+	width: 20em;
+	height: 15em;
 }
 
 #reel .image-container {
 	background-color: #000;
 	overflow: hidden;
+	max-width: 15em;
+	max-height: 20em;
 }
 
 #reel .header {
