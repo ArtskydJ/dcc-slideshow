@@ -1,9 +1,6 @@
 slideshow
 =========
 
-[![Dependency Status](https://david-dm.org/ArtskydJ/slideshow.svg)](https://david-dm.org/ArtskydJ/slideshow)
-[![devDependency Status](https://david-dm.org/ArtskydJ/slideshow/dev-status.svg)](https://david-dm.org/ArtskydJ/slideshow#info=devDependencies)
-
 This needs a better name. If you have an idea, [post it here](https://github.com/ArtskydJ/slideshow/issues/1).
 
 # goals
