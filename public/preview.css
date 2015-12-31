@@ -3,7 +3,8 @@
 }
 
 #main {
-	height: 100%;
+	height: calc(100vh - 6em);
+	overflow: hidden;
 }
 
 #reel {
@@ -19,6 +20,10 @@
 	margin: 0.5em;
 	padding: 2px;
 	background-color: #000;
+}
+
+#reel .show {
+	background-color: #114;
 }
 
 #reel img {
