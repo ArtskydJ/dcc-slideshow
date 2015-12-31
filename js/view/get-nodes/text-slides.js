@@ -3,7 +3,7 @@ var inheritHeaders = require('./inherit-headers.js')
 var elementClass = require('element-class')
 
 var SLIDE_BREAK_RE = /\s*^-{3,}$\s*/gm
-var SLIDE_PIECES_RE = /^(?:# (.+))?(?:\r?\n)*([^>]+)(?:> (.+))?(\r?\n)*$/
+var SLIDE_PIECES_RE = /^(?:# (.+))?\s*([^>]+?)\s*(?:> (.+))?\s*$/
 
 module.exports = function getMarkdownFromUrl(songUrl, cb) {
 	return request(songUrl, function (err, markdown) {
