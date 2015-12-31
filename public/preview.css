@@ -1,26 +1,23 @@
-.slide-container {
-	background-color: #000;
-	overflow: hidden;
-}
-
 #main {
-	height: calc(100vh - 6em);
-	overflow: hidden;
+	height: calc(100vh - 10.3em);
 }
 
 #reel {
-	padding: 0.5em;
-	background-color: #333;
-	display: flex;
-	font-size: 6pt;
+	height: calc(9.3em);
+	border: 0.5em solid #333;
+	overflow-x: scroll;
 }
 
-#reel > div {
-	width: 20em;
-	height: 15em;
-	margin: 0.5em;
+#reel .slide-container {
+	min-width: 10em; width: 10em;
+	min-height: 7em; height: 7em;
+	display: table-cell;
+	border: 0.5em solid #333;
 	padding: 2px;
-	background-color: #000;
+}
+
+#reel .image-container {
+	vertical-align: middle;
 }
 
 #reel .show {
@@ -28,15 +25,12 @@
 }
 
 #reel img {
-	overflow: hidden;
-	max-height: 33%;
-	max-width: 33%;
+	margin: auto;
+	max-height: 66%;
+	max-width: 66%;
+	display: block;
 }
 
-#reel .header {
-	font-size: 8pt;
-}
-
-#reel .footer {
-	font-size: 5pt;
-}
+#reel .header { font-size: 8pt; }
+#reel .lyrics { font-size: 6pt; }
+#reel .footer {	font-size: 5pt; }

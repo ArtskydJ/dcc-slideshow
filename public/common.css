@@ -1,16 +1,17 @@
-* {
-	margin: 0;
-	padding: 0;
-	border: 0;
-}
-
 body {
-	height: 100vh;
-	font-size: 18pt;
+	margin: 0;
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight: normal;
+}
+
+#main {
+	height: 100vh;
+}
+
+.slide-container {
 	color: #FFF;
 	background-color: #000;
+	height: 100%;
 	overflow: hidden;
 }
 
@@ -29,6 +30,10 @@ body {
 .header {
 	font-size: 24pt;
 	text-align: center;
+}
+
+.lyrics {
+	font-size: 18pt;
 }
 
 .footer {
