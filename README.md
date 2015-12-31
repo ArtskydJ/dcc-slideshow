@@ -48,58 +48,60 @@ A slide can be a picture file. The picture centered horizontally and vertically,
 A song is a text file. It holds headers, footers, lyrics, and slide breaks.
 
 - Slide Breaks
-	- A slide break is a line with three or more hyphens (`-`).
-	- A slide break at the beginning of a song file (without content before it) will be ignored. It will *not* be interpreted as an empty slide.
-	- A slide break at the end of a song file (without content after it) will be ignored. It will *not* be interpreted as an empty slide.
-	- Consecutive slide breaks *are* interpreted as empty slides.
-	- Newlines surrounding slide breaks are ignored.
-	- Can be matched with this regex: `/^-{3,}$/gm`
+	- [x] A slide break is a line with three or more hyphens (`-`).
+	- [x] A slide break at the beginning of a song file (without content before it) will be ignored. It will *not* be interpreted as an empty slide.
+	- [x] A slide break at the end of a song file (without content after it) will be ignored. It will *not* be interpreted as an empty slide.
+	- [ ] Consecutive slide breaks *are* interpreted as empty slides.
+	- [x] Newlines surrounding slide breaks are ignored.
+	- [x] Can be matched with this regex: `/^-{3,}$/gm`
 - Headers
-	- A header must not be defined below lyrics in the same slide. (Usually defined at the top of a file, or just below a slide break.)
-	- A header must begin with a pound sign followed by a space (`# Title of Song`).
-	- A slide in which a header is defined will use that header.
-	- Subsequent slides within that song file will inherit the header, unless a later header overrides it.
-	- Can be matched with this regex: `/^# .+/gm`
+	- [x] A header must not be defined below lyrics in the same slide. (Usually defined at the top of a file, or just below a slide break.)
+	- [x] A header must begin with a pound sign followed by a space (`# Title of Song`).
+	- [x] A slide in which a header is defined will use that header.
+	- [x] Subsequent slides within that song file will inherit the header, unless a later header overrides it.
+	- [x] Can be matched with this regex: `/^# .+/gm`
 - Footers
-	- A footer must not be defined above lyrics in the same slide. (Usually defined at the bottom of a file, or just above a slide break.)
-	- A footer must begin with a greater-than sign followed by a space (`> License or whatever`).
-	- A slide in which a footer is defined will use that footer.
-	- Subsequent slides will not inherit the footer.
-	- Can be matched with this regex: `/^> .+/gm`
-- Lyrics are anything that is not a header, footer, or a slide break. Surrounding newlines are ignored, but internal whitespace is preserved.
+	- [x] A footer must not be defined above lyrics in the same slide. (Usually defined at the bottom of a file, or just above a slide break.)
+	- [x] A footer must begin with a greater-than sign followed by a space (`> License or whatever`).
+	- [x] A slide in which a footer is defined will use that footer.
+	- [x] Subsequent slides will not inherit the footer.
+	- [x] Can be matched with this regex: `/^> .+/gm`
+- Lyrics
+	- [x] Lyrics are anything that is not a header, footer, or a slide break.
+	- [x] Surrounding newlines are ignored.
 
 ```md
 # Amazing Grace
 
 Amazing Grace, how sweet the sound,
- that saved a wretch like me!
+that saved a wretch like me!
 I once was lost but now am found,
- was blind, but now, I see.
+was blind, but now, I see.
 --------------------------------------------
 T'was Grace that taught my heart to fear,
- and Grace, my fears relieved.
+and Grace, my fears relieved.
 How precious did that Grace appear,
- the hour I first believed.
+the hour I first believed.
 --------------------------------------------
 Through many dangers, toils and snares,
- we have already come.
+we have already come.
 T'was Grace that brought us safe thus far,
- and Grace will lead us home.
+and Grace will lead us home.
 --------------------------------------------
 The Lord has promised good to me,
- His word my hope secures.
+His word my hope secures.
 He will my shield and portion be,
- as long as life endures.
+as long as life endures.
 --------------------------------------------
 When we've been here ten thousand years,
- bright shining as the sun.
+bright shining as the sun.
 We've no less days to sing God's praise,
- then when we've first begun.
+then when we've first begun.
 --------------------------------------------
 Amazing Grace, how sweet the sound,
- that saved a wretch like me!
+that saved a wretch like me!
 I once was lost but now am found,
- was blind, but now, I see.
+was blind, but now, I see.
 
 > Public Domain
 
