@@ -5,8 +5,10 @@ var elementClass = require('element-class')
 var SLIDE_BREAK_RE = /\s*^-{3,}$\s*/gm
 var SLIDE_PIECES_RE = /^(?:# (.+))?(?:\r?\n)*([^>]+)(?:> (.+))?(\r?\n)*$/
 
-module.exports = function getMarkdownFromUrl(songUrl) {
-	return request(songUrl).then(parse)
+module.exports = function getMarkdownFromUrl(songUrl, cb) {
+	return request(songUrl, function (err, markdown) {
+		cb(err, parse(markdown))
+	})
 }
 
 function parse(markdown) {

@@ -11,7 +11,8 @@ if (window.PREVIEW_MODE) {
 }
 var getSlideNodes = SlideNodes('http://localhost/test-projects/', 'http://localhost/test-songs/')
 
-getSlideNodes('project.txt').then(function (nodes) {
+getSlideNodes('project.txt', function (err, nodes) {
+	if (err) throw err
 	var max = nodes.length - 1
 	nodes.forEach(function (node, i) {
 		if (window.PREVIEW_MODE) {
@@ -36,6 +37,4 @@ getSlideNodes('project.txt').then(function (nodes) {
 		}
 		elementClass(document.getElementById(slideId)).add('show')
 	})
-}).catch(function (err) {
-	throw err
 })
