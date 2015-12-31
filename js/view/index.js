@@ -1,6 +1,7 @@
-var markdownToNodes = require('./markdown-to-nodes.js')
-var getText = require('./get-text.js')
-var getImageNode = require('./get-image-node.js')
+var getTextSlides = require('./get-nodes/text-slides.js')
+var getEmptySlide = require('./get-nodes/empty-slide.js')
+var getImageSlides = require('./get-nodes/image-slide.js')
+var request = require('./request.js')
 var url = require('url')
 var isImage = require('is-image')
 
@@ -9,11 +10,11 @@ module.exports = function parseProject(projectUrlBase, songUrlBase) {
 	function fileToNodes(fileName) {
 		var songUrl = url.resolve(songUrlBase, fileName)
 		if (isImage(fileName)) {
-			return getImageNode(songUrl)
+			return getImageSlides(songUrl)
 		} else if (fileName) {
-			return getText(songUrl).then(markdownToNodes)
+			return getTextSlides(songUrl)
 		} else {
-			return document.createElement('div')
+			return getEmptySlide()
 		}
 	}
 
@@ -23,7 +24,7 @@ module.exports = function parseProject(projectUrlBase, songUrlBase) {
 
 	return function pp(projectFile) {
 		var projectUrl = url.resolve(projectUrlBase, projectFile)
-		return getText(projectUrl)
+		return request(projectUrl)
 			.then(function g(list) {
 				var proms = list.split(/\r?\n/g).map(fileToNodes)
 				return Promise.all(proms)

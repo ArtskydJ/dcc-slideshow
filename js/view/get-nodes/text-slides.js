@@ -1,10 +1,15 @@
+var request = require('../request.js')
 var inheritHeaders = require('./inherit-headers.js')
 var elementClass = require('element-class')
 
 var SLIDE_BREAK_RE = /\s*^-{3,}$\s*/gm
 var SLIDE_PIECES_RE = /^(?:# (.+))?(?:\r?\n)*([^>]+)(?:> (.+))?(\r?\n)*$/
 
-module.exports = function parse(markdown) {
+module.exports = function getMarkdownFromUrl(songUrl) {
+	return request(songUrl).then(parse)
+}
+
+function parse(markdown) {
 	return markdown
 		.split(SLIDE_BREAK_RE)
 		.filter(Boolean) // Remove empty slides
@@ -25,7 +30,6 @@ function parseSlide(slide) {
 
 function toNode(slide) {
 	var div = document.createElement('div')
-	elementClass(div).add('slide-container')
 	div.innerHTML = (
 		'<div class="header">' + slide.header + '</div>' +
 		'<div class="lyrics">\n' +
@@ -33,5 +37,8 @@ function toNode(slide) {
 		'\n</div>\n' +
 		'<div class="footer">' + slide.footer + '</div>'
 	)
+	var classes = elementClass(div)
+	classes.add('slide-container')
+	classes.add('text-container')
 	return div
 }
