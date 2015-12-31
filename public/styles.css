@@ -9,9 +9,7 @@ body {
 .slide-container {
 	color: #FFF;
 	background-color: #000;
-	height: 100%;
 	overflow: hidden;
-	padding: 1em 10em;
 }
 
 .image-container {
@@ -20,36 +18,32 @@ body {
 	align-items: center;
 }
 
-.hide:not(.show) {
-	display: none;
-}
-
-.header {
-	text-align: center;
-}
-
-.lyrics {
-	font-weight: bold;
-}
-
-.footer {
-	text-align: right;
-	padding-top: 3em;
-}
+.header { text-align: center; }
+.lyrics { font-weight: bold; }
+.footer { text-align: right; }
 
 /* main */
 
 #main.presentation {
-	height: 100vh;
+	height: calc(100vh - 2em);
 }
 
 #main.preview {
 	height: calc(100vh - 12.3em);
 }
 
+#main .slide-container {
+	height: 100%;
+	padding: 1em 10em;
+}
+
+#main .slide-container:not(.show) {
+	display: none;
+}
+
 #main .header { font-size: 36pt; }
 #main .lyrics { font-size: 32pt; }
-#main .footer { font-size: 22pt; }
+#main .footer { font-size: 22pt; padding-top: 3em; }
 
 /* reel */
 
@@ -60,8 +54,9 @@ body {
 }
 
 #reel .slide-container {
-	min-width: 10em; width: 10em;
-	min-height: 7em; height: 7em;
+	min-width: 10em;
+	width: 10em;
+	height: 7em;
 	display: table-cell;
 	border: 0.5em solid #333;
 	padding: 2px 20px;
@@ -83,5 +78,5 @@ body {
 }
 
 #reel .header { font-size: 8pt; }
-#reel .lyrics { font-size: 6pt; }
+#reel .lyrics { font-size: 7pt; }
 #reel .footer {	font-size: 5pt; padding-top: 10px; }

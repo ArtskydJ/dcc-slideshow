@@ -18,7 +18,6 @@ getSlideNodes('project.txt', function (err, nodes) {
 			reelElement.appendChild(clone)
 		}
 
-		elementClass(node).add('hide')
 		node.id = i
 		mainElement.appendChild(node)
 	})
