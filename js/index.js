@@ -4,10 +4,9 @@ var elementClass = require('element-class')
 var emitter = require('tab-emitter')('slides')
 
 var rootElement = document.body
-var mainElement = document.body
+var mainElement = document.getElementById('main')
 if (window.PREVIEW_MODE) {
 	var reelElement = document.getElementById('reel')
-	mainElement = document.getElementById('main')
 }
 var getSlideNodes = SlideNodes('http://localhost/test-projects/', 'http://localhost/test-songs/')
 
