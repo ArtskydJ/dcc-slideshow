@@ -14,11 +14,8 @@
     "url": "https://github.com/ArtskydJ/slideshow"
   },
   "scripts": {
-    "build": "npm run build-presentation && npm run build-preview",
-    "build-presentation": "browserify js/presentation.js | uglifyjs - -m -o public/presentation.js",
-    "build-preview": "browserify js/preview.js | uglifyjs - -m -o public/preview.js",
-    "watch-presentation": "watchify js/presentation.js -d -o public/presentation.js",
-    "watch-preview": "watchify js/preview.js -d -o public/preview.js"
+    "build": "browserify js/index.js | uglifyjs - -m -o public/bundle.js",
+    "watch": "watchify js/index.js -d -o public/bundle.js"
   },
   "dependencies": {
     "array.prototype.find": "^1.0.0",

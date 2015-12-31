@@ -1,4 +1,3 @@
-public/presentation.js
-public/preview.js
+public/bundle.js
 node_modules
 npm-debug.log
