@@ -5,16 +5,14 @@ var emitter = require('tab-emitter')('slides')
 
 var rootElement = document.body
 var mainElement = document.getElementById('main')
-if (window.PREVIEW_MODE) {
-	var reelElement = document.getElementById('reel')
-}
+var reelElement = document.getElementById('reel')
 var getSlideNodes = SlideNodes('http://localhost/test-projects/', 'http://localhost/test-songs/')
 
 getSlideNodes('project.txt', function (err, nodes) {
 	if (err) throw err
 	var max = nodes.length - 1
 	nodes.forEach(function (node, i) {
-		if (window.PREVIEW_MODE) {
+		if (reelElement) {
 			var clone = node.cloneNode(true)
 			clone.id = 1000 + i
 			reelElement.appendChild(clone)
@@ -31,7 +29,7 @@ getSlideNodes('project.txt', function (err, nodes) {
 			elementClass(node).remove('show')
 		})
 
-		if (window.PREVIEW_MODE) {
+		if (reelElement) {
 			elementClass(document.getElementById(1000 + slideId)).add('show')
 		}
 		elementClass(document.getElementById(slideId)).add('show')
