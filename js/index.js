@@ -26,7 +26,10 @@ getSlideNodes('project.txt').then(function (nodes) {
 	})
 
 	controls(rootElement, emitter, max, function (slideId) {
-		elementClass(rootElement.querySelector('.show')).remove('show')
+		var nodes = rootElement.querySelectorAll('.show')
+		;[].slice.call(nodes).forEach(function (node) {
+			elementClass(node).remove('show')
+		})
 
 		if (window.PREVIEW_MODE) {
 			elementClass(document.getElementById(1000 + slideId)).add('show')
