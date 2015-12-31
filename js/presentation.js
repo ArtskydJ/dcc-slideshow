@@ -14,12 +14,10 @@ getSlideNodes('project.txt').then(function (nodes) {
 		rootElement.appendChild(node)
 	})
 
-	emitter.on('slide', function loadSlide(slideId) {
+	controls(rootElement, emitter, max, function (slideId) {
 		elementClass(rootElement.querySelector('.show')).remove('show')
 		elementClass(document.getElementById(slideId)).add('show')
 	})
-
-	controls(rootElement, emitter, max)
 }).catch(function (err) {
 	throw err
 })

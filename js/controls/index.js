@@ -13,7 +13,7 @@ var modifiers = {
 	last: function last(x, max) { return max }
 }
 
-module.exports = function slideChange(ele, emitter, maxSlideIndex) {
+module.exports = function slideChange(ele, emitter, maxSlideIndex, onChange) {
 	if (!ele) throw new Error('Must provide an element to slide-change.js')
 
 	if (PROD) domEvent(ele, 'click', function (ev) {
@@ -28,15 +28,19 @@ module.exports = function slideChange(ele, emitter, maxSlideIndex) {
 		})
 	})
 
-	modifyIndex('first')
-
-	var index = 0
 	function modifyIndex(action) {
 		if (PROD) tryFull()
-		var old = index
-		index = modifiers[action](index, maxSlideIndex)
-		if (index !== old) {
-			emitter.emit('slide', index)
-		}
+		emitter.emit('slide', action)
 	}
+
+	var index = -1
+	emitter.on('slide', function (action) {
+		var prevIndex = index
+		index = modifiers[action](index, maxSlideIndex)
+		if (prevIndex !== index) {
+			onChange(index)
+		}
+	})
+
+	modifyIndex('first')
 }

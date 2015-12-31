@@ -9,6 +9,7 @@ var mainElement = document.getElementById('main')
 var getSlideNodes = SlideNodes('http://localhost/test-projects/', 'http://localhost/test-songs/')
 
 getSlideNodes('project.txt').then(function (nodes) {
+	var max = nodes.length - 1
 	nodes.forEach(function (node, i) {
 		var clone = node.cloneNode(true)
 
@@ -21,16 +22,13 @@ getSlideNodes('project.txt').then(function (nodes) {
 		mainElement.appendChild(node)
 	})
 
-	emitter.on('slide', function loadSlide(slideId) {
-		//elementClass(reelElement.querySelector('.show')).remove('show')
-		//elementClass(document.getElementById(1000 + slideId)).add('show')
-
+	controls(rootElement, emitter, max, function (slideId) {
+		elementClass(reelElement.querySelector('.show')).remove('show')
 		elementClass(mainElement.querySelector('.show')).remove('show')
+
+		elementClass(document.getElementById(1000 + slideId)).add('show')
 		elementClass(document.getElementById(slideId)).add('show')
 	})
-
-	var max = nodes.length - 1
-	controls(rootElement, emitter, max)
 }).catch(function (err) {
 	throw err
 })
