@@ -15,7 +15,7 @@
   },
   "scripts": {
     "build": "browserify js/index.js | uglifyjs - -m -o public/bundle.js",
-    "watch": "watchify js/index.js -v -d -o public/bundle.js"
+    "watch": "wzrd js/index.js:public/bundle.js -- -d"
   },
   "dependencies": {
     "array.prototype.find": "^1.0.0",
@@ -32,6 +32,6 @@
   "devDependencies": {
     "browserify": "^12.0.1",
     "uglify-js": "^2.6.1",
-    "watchify": "^3.2.1"
+    "wzrd": "^1.3.1"
   }
 }

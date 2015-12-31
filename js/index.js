@@ -6,7 +6,7 @@ var emitter = require('tab-emitter')('slides')
 var rootElement = document.body
 var mainElement = document.getElementById('main')
 var reelElement = document.getElementById('reel')
-var getSlideNodes = SlideNodes('http://localhost/test-projects/', 'http://localhost/test-songs/')
+var getSlideNodes = SlideNodes('http://localhost:9966/public/test-projects/', 'http://localhost:9966/public/test-songs/')
 
 getSlideNodes('project.txt', function (err, nodes) {
 	if (err) throw err
