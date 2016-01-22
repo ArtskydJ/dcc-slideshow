@@ -20,7 +20,7 @@ body {
 .lyrics { font-weight: bold; }
 .footer { text-align: right; }
 
-#main.presentation {
+#main.presentation .slide-container {
 	/* hardcode the width and height */
 	padding: 0.5em 5em;
 	width: calc(1024px - 5em);
@@ -31,7 +31,7 @@ body {
 	height: calc(100vh - 10.3em);
 }
 
-#main.preview .slide-container {
+#main .slide-container {
 	height: 100%;
 }
 
