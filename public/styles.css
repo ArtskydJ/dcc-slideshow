@@ -21,7 +21,15 @@ body {
 .footer { text-align: right; }
 
 #main.presentation .slide-container {
-	/* hardcode the width and height */
+	/* Hardcode the width and height
+	The projector we use can be one of the following resolutions:
+	800x600
+	1024x768 (currently using with powerpoint)
+	1280x768
+	1280x1024
+	1400x1050
+	1600x1200
+	*/
 	padding: 0.5em 5em;
 	width: calc(1024px - 5em);
 	height: calc(768px - 0.5em);
