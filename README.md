@@ -1,7 +1,7 @@
-slideshow
-=========
+dcc-slideshow
+=============
 
-This needs a better name. If you have an idea, [post it here](https://github.com/ArtskydJ/slideshow/issues/1).
+> Songs and slides for DCC
 
 # goals
 
