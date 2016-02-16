@@ -19,6 +19,7 @@ getSlideNodes('project.txt', function (err, nodes) {
 		}
 
 		node.id = i
+		// node.style['z-index'] = i
 		mainElement.appendChild(node)
 	})
 
