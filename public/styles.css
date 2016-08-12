@@ -2,6 +2,7 @@ body {
 	margin: 0;
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight: normal;
+	background-color: #000;
 }
 
 .slide-container {
@@ -20,6 +21,11 @@ body {
 .lyrics { font-weight: bold; }
 .footer { text-align: right; }
 
+/* * * * * * * * * * * * * MAIN * * * * * * * * * * * * */
+
+#main {
+}
+
 #main.presentation .slide-container {
 	/* Hardcode the width and height
 	The projector we use can be one of the following resolutions:
@@ -31,25 +37,32 @@ body {
 	1600x1200
 	*/
 	padding: 0.5em 5em;
-	width: calc(1024px - 5em);
-	height: calc(768px - 0.5em);
+	width: calc(800px - 5em);
+	height: calc(600px - 0.5em);
 }
-
-#main.preview {
-	height: calc(100vh - 10.3em);
+#main.preview .slide-container {
+	margin: calc(50vh - 300px - 5em) calc(50vw - 400px + 2.5em);
+	width: calc(800px - 5em);
+	height: calc(600px - 0.5em);
 }
 
 #main .slide-container {
-	height: 100%;
+	opacity: 0;
+	transition: opacity 0.2s linear;
+	position: absolute;
 }
 
-#main .slide-container:not(.show) {
-	display: none;
+#main .show {
+	z-index: 1;
+	opacity: 1;
+	/*display: none;*/
 }
 
 #main .header { font-size: 36pt; }
 #main .lyrics { font-size: 32pt; }
 #main .footer { font-size: 22pt; padding-top: 3em; }
+
+/* * * * * * * * * * * * * REEL * * * * * * * * * * * * */
 
 #reel {
 	height: calc(9.3em);
@@ -83,4 +96,4 @@ body {
 
 #reel .header { font-size: 8pt; }
 #reel .lyrics { font-size: 7pt; }
-#reel .footer {	font-size: 5pt; padding-top: 10px; }
+#reel .footer { font-size: 5pt; padding-top: 10px; }
