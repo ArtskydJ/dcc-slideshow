@@ -1,29 +1,29 @@
 var cp = require('child_process')
 var fs = require('fs')
 var path = require('path')
-var each = require('async-each')
 
-function isPowerPoint(filename) {
-	return filename.lastIndexOf('.ppt') === filename.length - 4
-}
+var sofficePath = 'C:\\Program Files (x86)\\LibreOffice 5\\program\\soffice.exe'
+var srcPath = path.join(__dirname, 'ppt')
+var destPath = path.join(__dirname, 'fodp')
 
-var pptFilenames = fs.readdirSync(path.join(__dirname, '..', 'ppt'))
-var convertedFilenames = fs.readdirSync(__dirname)
+var pptFilenames = fs.readdirSync(srcPath)
+var convertedFilenames = fs.readdirSync(destPath)
 var validFilenames = pptFilenames
-	.filter(isPowerPoint)
-	.filter(function (filename) {
-		return convertedFilenames.indexOf(filename.replace(/\.ppt$/, '.fodp')) === -1
-	})
+	.filter(filename => filename.endsWith('.ppt'))
+	.filter(filename => !convertedFilenames.includes(filename.replace(/\.ppt$/, '.fodp')) )
 
 function loop(validFilenames) {
 	if (validFilenames.length) {
-		cp.execFile('soffice.exe', [ '--convert-to', 'fodp', '..\\ppt\\' + validFilenames.pop() ], function (err) {
+		var sofficeArgs = [
+			'--convert-to',
+			'fodp',
+			path.resolve(srcPath, validFilenames.pop())
+		]
+		console.log(sofficeArgs[2])
+		cp.execFile(sofficePath, sofficeArgs, { cwd: destPath }, err => {
 			if (err) throw err
 			loop(validFilenames)
 		})
 	}
 }
 loop(validFilenames)
-
-// This file was originally in ./fodp, so it will need to be modified to run from ./
-// Maybe it was written that way because of cp.execFile? But I think it can take a cwd option.

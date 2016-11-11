@@ -1,11 +1,8 @@
 var fs = require('fs')
 var path = require('path')
 
-var lastHeader = ''
-
-function normalizeApostrophes(str) {
-	return str.replace(/&apos;|’/g, '\'')
-}
+var srcPath = path.join(__dirname, 'fodp')
+var destPath = path.join(__dirname, 'txt')
 
 function byLength(str1, str2) {
 	var length1 = str1 ? str1.length : 0
@@ -13,27 +10,21 @@ function byLength(str1, str2) {
 	return length2 - length1
 }
 
-function breakFrameCorrectly(frame) {
-	return frame.replace(/<text:line-break\/>/g, '\n')
-}
-
-function cleanRoughContent(str) {
-	return str.replace(/<[^>]+>|^>| ?<\/$|&lt;number&gt;/g, '')
-}
-
 function getTextFromFrame(frame) {
 	return (frame.match(/>(.+) ?<\//g) || [])
-		.map(cleanRoughContent)
+		.map(str => str.replace(/<[^>]+>|^>| ?<\/$|&lt;number&gt;/g, '')) // Clean rough content
 		.filter(Boolean)
 		.join('\r\n')
 }
 
 function getTextFromPage(page) {
 	var unsortedFrames = page
+		.replace(/\xA0/g, ' ') // Replace &nbsp; with " "
+		.replace(/&apos;|’/g, '\'') // Fix apostrophes
+		.replace(/[^©A-Za-z0-9\r\n\.!,;: '"\/#\(\)>?&—…\[\]-]/g, '') // Get rid of unknown characters
 		.split(/<\/?draw:(frame|custom-shape)>/)
-		.map(breakFrameCorrectly)
+		.map(frame => frame.replace(/<text:line-break\/>/g, '\n')) // Break frame correctly
 		.map(getTextFromFrame)
-		.map(normalizeApostrophes)
 	var frames = unsortedFrames.slice().sort(byLength)
 
 	var title = unsortedFrames[0]
@@ -47,23 +38,21 @@ function getTextFromPage(page) {
 	return header + content + footer + '\r\n'
 }
 
-function isExtension(expect) {
-	expect = ('.' + expect).replace('..', '.')
-	return function(filename) {
-		return filename.lastIndexOf(expect) === filename.length - expect.length
-	}
-}
 
+var lastHeader = ''
 function processFile(filename) {
-	var contents = fs.readFileSync(path.join(__dirname, 'fodp', filename), 'utf8')
-	contents = contents.slice(contents.indexOf('<office:body>')) // remove anything before "<office:body>"
-	var song = contents
+	lastHeader = ''
+
+	var song =
+		fs.readFileSync(path.join(srcPath, filename), 'utf8')
+		.slice(contents.indexOf('<office:body>')) // remove anything before "<office:body>"
 		.split(/<\/draw:page>\s*<draw:page/)
 		.map(getTextFromPage)
 		.join('\r\n-----\r\n\r\n')
-	fs.writeFileSync(path.join(__dirname, 'txt', filename), song)
+
+	fs.writeFileSync(path.join(destPath, filename), song)
 }
 
-fs.readdirSync(path.join(__dirname, 'fodp'))
-	.filter(isExtension('txt'))
+fs.readdirSync(srcPath)
+	.filter(filename => filename.endsWith('.txt'))
 	.forEach(processFile)
