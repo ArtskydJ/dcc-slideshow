@@ -1,3 +1,17 @@
+### project status:
+
+basically dead :(
+
+I don't realistically think this is something I am going to work on. The PPT normalizer is something I *might* actually do.
+
+But if you want to run with this project, then note the following:
+- I set most of the currently open issues to have the label `wontfix` and then closed them. So re-open the `wontfix` issued, and get to work!
+- There are also goals and progress below.
+
+---------------------
+
+
+
 dcc-slideshow
 =============
 
